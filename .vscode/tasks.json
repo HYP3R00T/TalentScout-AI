@@ -1,0 +1,27 @@
+{
+    "$schema": "https://json.schemastore.org/tasks.json",
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run API (uvicorn)",
+            "type": "shell",
+            "command": "uv run uvicorn talentscout_ai.api.main:app --reload --host 0.0.0.0 --port 8000",
+            "group": "build",
+            "problemMatcher": "$eslint-stylish"
+        },
+        {
+            "label": "Run App (streamlit)",
+            "type": "shell",
+            "command": "uv run streamlit run src/talentscout_ai/app.py --server.port 8501",
+            "group": "build",
+            "problemMatcher": "$eslint-stylish"
+        },
+        {
+            "label": "Run API+App",
+            "type": "shell",
+            "command": "pwsh -NoProfile -Command \"Start-Process -NoNewWindow -FilePath 'uv' -ArgumentList 'run','uvicorn','talentscout_ai.api.main:app','--reload','--host','0.0.0.0','--port','8000'; Start-Sleep -Seconds 2; uv run streamlit run src/talentscout_ai/app.py --server.port 8501\"",
+            "group": "build",
+            "problemMatcher": "$eslint-stylish"
+        }
+    ]
+}

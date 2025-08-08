@@ -1,0 +1,32 @@
+{
+    "$schema": "https://json.schemastore.org/launch.json",
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "FastAPI (uvicorn)",
+            "type": "python",
+            "request": "launch",
+            "module": "uvicorn",
+            "args": [
+                "talentscout_ai.api.main:app",
+                "--reload",
+                "--host",
+                "0.0.0.0",
+                "--port",
+                "8000"
+            ]
+        },
+        {
+            "name": "Streamlit App",
+            "type": "python",
+            "request": "launch",
+            "module": "streamlit",
+            "args": [
+                "run",
+                "src/talentscout_ai/app.py",
+                "--server.port",
+                "8501"
+            ]
+        }
+    ]
+}
