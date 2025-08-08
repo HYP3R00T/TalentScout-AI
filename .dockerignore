@@ -1,0 +1,36 @@
+# Ignore VCS
+.git
+.gitignore
+
+# Python cache
+__pycache__
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.so
+*.egg-info
+.eggs
+
+# Environments
+.venv
+.env
+.env.*
+
+# OS/editor
+.DS_Store
+.vscode
+.idea
+
+# Not needed in build context
+.devcontainer
+scripts
+*.log
+
+# Test/CI artifacts
+.coverage
+.pytest_cache
+
+# Cache dirs
+.cache
+hf-cache

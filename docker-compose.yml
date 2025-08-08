@@ -1,0 +1,38 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: talentscout-ai:latest
+    container_name: talentscout-api
+    environment:
+      # Cache dir for sentence-transformers to avoid re-downloading on restarts
+      - HF_HOME=/hf-cache
+      - TRANSFORMERS_CACHE=/hf-cache
+    volumes:
+      - hf-cache:/hf-cache
+    ports:
+      - "8000:8000"
+    command: ["uvicorn", "talentscout_ai.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+
+  app:
+    depends_on:
+      - api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: talentscout-ai:latest
+    container_name: talentscout-app
+    environment:
+      - API_URL=http://api:8000
+      - HF_HOME=/hf-cache
+      - TRANSFORMERS_CACHE=/hf-cache
+    volumes:
+      - hf-cache:/hf-cache
+    ports:
+      - "8501:8501"
+    command: ["streamlit", "run", "src/talentscout_ai/app.py", "--server.port", "8501", "--server.address", "0.0.0.0"]
+
+volumes:
+  hf-cache:
+    driver: local
