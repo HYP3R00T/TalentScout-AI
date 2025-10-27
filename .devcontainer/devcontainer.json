@@ -1,5 +1,5 @@
 {
-    "name": "devcontainer-python-template",
+    "name": "TalentScount-AI",
     "build": {
         "context": ".",
         "dockerfile": "Dockerfile"
