@@ -27,5 +27,11 @@
                 "hverlin.mise-vscode"
             ]
         }
+    },
+    "mounts": [
+        "source=${env:SSH_AUTH_SOCK},target=/ssh-agent,type=bind,consistency=cached"
+    ],
+    "containerEnv": {
+        "SSH_AUTH_SOCK": "/ssh-agent"
     }
 }
